@@ -1,0 +1,2 @@
+# CMakeProjectTemplate
+CMake Project Template
