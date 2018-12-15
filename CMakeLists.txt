@@ -14,17 +14,22 @@ find_package(Glog REQUIRED)                                     # glog
 find_package(Boost COMPONENTS filesystem date_time REQUIRED)    # boost
 find_package(Eigen3 REQUIRED)                                   # Eigen
 find_package(OpenCV 4 REQUIRED)                                 # OpenCV
+find_package(SQLiteCpp REQUIRED)                                # SQLiteCpp
 include_directories(
         ${GFLAGS_INCLUDE_DIRS}
         ${GLOG_INCLUDE_DIRS}
         ${EIGEN3_INCLUDE_DIRS}
         ${Boost_INCLUDE_DIRS}
-        ${OpenCV_INCLUDE_DIRS})
+        ${OpenCV_INCLUDE_DIRS}
+        ${SQLiteCpp_INCLUDE_DIRS}
+)
 set(EXTERNAL_LIBS ${EXTERNAL_LIBS}
         ${GFLAGS_LIBRARIES}
         ${GLOG_LIBRARIES}
         ${Boost_LIBRARIES}
-        ${OpenCV_LIBRARIES})
+        ${OpenCV_LIBRARIES}
+        ${SQLiteCpp_LIBRARIES}
+        )
 
 
 ###############################################################################
