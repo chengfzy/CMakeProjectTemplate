@@ -17,7 +17,7 @@ if (${CMAKE_VERSION} VERSION_LESS 3.12)
 endif ()
 message(STATUS "Project Version: ${CMAKE_PROJECT_VERSION}")
 
-#cmake modules
+# cmake modules
 list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
 
@@ -31,7 +31,7 @@ find_package(Eigen3 REQUIRED)                                   # Eigen
 find_package(OpenCV 4 REQUIRED)                                 # OpenCV
 find_package(SQLiteCpp REQUIRED)                                # SQLiteCpp
 
-#public and prive dependency include directories
+# public and prive dependency include directories
 list(APPEND PUBLIC_DEPEND_INCLUDES
         ${GFLAGS_INCLUDE_DIRS}
         ${Boost_INCLUDE_DIRS}
@@ -43,7 +43,7 @@ list(APPEND PRIVATE_DEPEND_INCLUDES
         SQLiteCpp
         )
 
-#public and private dependency libraries
+# public and private dependency libraries
 list(APPEND PUBLIC_DEPEND_LIBS
         ${GFLAGS_LIBRARIES}
         )
@@ -57,22 +57,22 @@ list(APPEND PRIVATE_DEPEND_LIBS
 ###############################################################################
 # Project Setting
 ###############################################################################
-#default built type
+# default built type
 IF (NOT CMAKE_BUILD_TYPE)
     SET(CMAKE_BUILD_TYPE RELEASE)
 ENDIF ()
 message(STATUS "Build Type: ${CMAKE_BUILD_TYPE}")
 
-#build setting
+# build setting
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-#project name
+# project name
 set(PRJ_LIB FeatureExtract)
 set(PRJ_APP FeatureExtractApp)
-#add project directory
+# add project directory
 add_subdirectory(module)
 
 ###############################################################################
