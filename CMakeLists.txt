@@ -24,11 +24,26 @@ list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 ###############################################################################
 # Libraries
 ###############################################################################
+# find and add Qt path from Home directory
+foreach (r $ENV{HOME}/Programs $ENV{HOME} /opt)
+    file(GLOB FOLDER RELATIVE ${r} ${r}/*)
+    foreach (f ${FOLDER})
+        if (IS_DIRECTORY ${r}/${f} AND ${f} MATCHES "Qt*")
+            string(SUBSTRING ${f} 2 -1 QtVersion)
+            message(STATUS "Found QtFolder: ${r}/${f}, Version: ${QtVersion}")
+            set(CMAKE_PREFIX_PATH "${r}/${f}/${QtVersion}/gcc_64/lib/cmake")
+            break()
+        endif ()
+    endforeach ()
+endforeach ()
+
+# find packages
 find_package(Gflags REQUIRED)                                   # gflags
 find_package(Glog REQUIRED)                                     # glog
 find_package(Boost COMPONENTS filesystem date_time REQUIRED)    # boost
 find_package(Eigen3 REQUIRED)                                   # Eigen
 find_package(OpenCV 4 REQUIRED)                                 # OpenCV
+find_package(Qt5 COMPONENTS Core Widgets Gui Network REQUIRED)  # Qt
 find_package(SQLiteCpp REQUIRED)                                # SQLiteCpp
 
 # public and prive dependency include directories
@@ -51,6 +66,7 @@ list(APPEND PRIVATE_DEPEND_LIBS
         ${GLOG_LIBRARIES}
         ${Boost_LIBRARIES}
         ${OpenCV_LIBRARIES}
+        Qt5::Core Qt5::Widgets Qt5::Gui Qt5::Network
         SQLiteCpp sqlite3
         )
 
